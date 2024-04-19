@@ -55,6 +55,6 @@ symbol = soup.find('span', class_='a-price-symbol')
 price = soup.find('span', class_='a-price-whole')
 
 if price:
-    print('Price:', symbol.get_text(), price.get_text())
+    print('Price:', symbol.get_text(), price.get_text().strip(','))
 else:
     print('Price not found')

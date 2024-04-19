@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 driver = webdriver.Chrome()
 
-url = 'https://www.amazon.ca/s?k=iphone+14'
+url = 'https://amazon.ca/s?k=iphone+14'
 
 driver.get(url)
 

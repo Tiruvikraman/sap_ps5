@@ -6,10 +6,31 @@ from bs4 import BeautifulSoup
 
 driver = webdriver.Chrome()
 
-url = 'https://amazon.ca/s?k=iphone+14'
+url = 'https://www.amazon.ca/s?k=boat+headphones&ref=cs_503_search'
 
 driver.get(url)
+html = driver.page_source
 
+soup = BeautifulSoup(html, 'html.parser')
+
+div_h = soup.find("div", id="h")
+captcha=soup.find('form',action='/errors/validateCaptcha')
+
+while   div_h or captcha:
+    driver.refresh()
+    updated_url = driver.current_url
+    url = updated_url
+
+    driver.get(url)
+    html = driver.page_source
+
+    soup = BeautifulSoup(html, 'html.parser')
+    captcha=soup.find('form',action='/errors/validateCaptcha')
+
+
+    div_h = soup.find("div", id="h")
+    if (div_h==None) and (captcha==None):
+        break  
 
 deliver_to_link = WebDriverWait(driver, 20).until(
     EC.element_to_be_clickable((By.ID, "nav-global-location-popover-link"))
@@ -55,10 +76,10 @@ driver.get(url)
 html = driver.page_source
 
 soup = BeautifulSoup(html, 'html.parser')
-symbol = soup.find('span', class_='a-price-symbol')
-price = soup.find('span', class_='a-price-whole')
+price = soup.find('div', class_='a-section a-spacing-none a-spacing-top-small s-price-instructions-style')
+price = price.find('span', class_='a-offscreen')
 
 if price:
-    print('Price:', symbol.get_text(), price.get_text())
+    print('Price:', price.get_text())
 else:
     print('Price not found')

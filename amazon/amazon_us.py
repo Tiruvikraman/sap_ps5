@@ -65,7 +65,7 @@ driver.get(url)
 html = driver.page_source
 
 symbol = soup.find('div', class_='puisg-col puisg-col-4-of-12 puisg-col-4-of-16 puisg-col-4-of-20 puisg-col-4-of-24')
-symbol = symbol.find('span', class_='a-offscreen')
+symbol = soup.find('span', class_='a-offscreen')
 
 if symbol:
     print('Price:', symbol.get_text())

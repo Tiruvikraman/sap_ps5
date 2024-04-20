@@ -4,57 +4,49 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 
-driver = webdriver.Chrome()
 
-url = 'https://amazon.fr/s?k=rockport+shoes'
+def get_france_price(product_name):
+    driver = webdriver.Chrome()
+    product_name = product_name.replace(' ', '+')
+    url = f'https://amazon.fr/s?k={product_name}'
 
-driver.get(url)
+    driver.get(url)
 
+    deliver_to_link = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.ID, "nav-global-location-popover-link"))
+    )
+    deliver_to_link.click()
 
-deliver_to_link = WebDriverWait(driver, 20).until(
-    EC.element_to_be_clickable((By.ID, "nav-global-location-popover-link"))
-)
-deliver_to_link.click()
+    postcode_input1 = WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.ID, "GLUXZipUpdateInput"))
+    )
 
-postcode_input1 = WebDriverWait(driver, 20).until(
-    EC.presence_of_element_located((By.ID, "GLUXZipUpdateInput"))
-)
+    postcode_input1.clear()
+    postcode_input1.send_keys("75001")
 
+    apply_button = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.ID, "GLUXZipUpdate"))
+    )
+    apply_button.click()
 
-postcode_input1.clear()
-postcode_input1.send_keys("75001")
+    print("Postcode applied successfully.")
 
-apply_button = WebDriverWait(driver, 20).until(
-    EC.element_to_be_clickable((By.ID, "GLUXZipUpdate"))
-)
-apply_button.click()
+    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "span.a-price-whole")))
 
-print("Postcode applied successfully.")
+    html_after_apply = driver.page_source
 
-WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "span.a-price-whole")))
+    soup = BeautifulSoup(html_after_apply, 'html.parser')
 
-html_after_apply = driver.page_source
+    updated_url = driver.current_url
+    print(updated_url)
+    url = updated_url
 
-with open("amazon_page_after_apply.html", "w", encoding="utf-8") as f:
-    f.write(html_after_apply)
+    driver.get(url)
 
+    html = driver.page_source
 
-soup = BeautifulSoup(html_after_apply, 'html.parser')
+    soup = BeautifulSoup(html, 'html.parser')
+    symbol = soup.find('span', class_='a-price-symbol').get_text()
+    price = int(soup.find('span', class_='a-price-whole').get_text().strip(',').replace('\u202f', ''))
 
-
-updated_url = driver.current_url
-print(updated_url)
-url = updated_url
-
-driver.get(url)
-
-html = driver.page_source
-
-soup = BeautifulSoup(html, 'html.parser')
-symbol = soup.find('span', class_='a-price-symbol')
-price = soup.find('span', class_='a-price-whole')
-
-if price:
-    print('Price:', symbol.get_text(), price.get_text().strip(','))
-else:
-    print('Price not found')
+    return [symbol, price]

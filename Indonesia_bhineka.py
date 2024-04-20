@@ -11,5 +11,5 @@ driver = webdriver.Chrome(options=options)
 driver.get('https://www.bhinneka.com/jual?cari=iphone+14+pro&order=')
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser')
-price = soup.find('span',class_='oe_currency_value')
-print('price',price.get_text())
+price = soup.find('span',class_='oe_currency_value').get_text()
+return [price]

@@ -7,7 +7,7 @@ from aust import get_aust_price
 from usa import get_usa_price
 from canada import get_canada_price
 
-product_name = "iphone 15 pro"
+product_name = input("Enter product name: ")
 
 price_info = get_france_price(product_name)
 print(price_info)

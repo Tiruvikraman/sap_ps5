@@ -46,7 +46,7 @@ def get_france_price(product_name):
     html = driver.page_source
 
     soup = BeautifulSoup(html, 'html.parser')
-    symbol = soup.find('span', class_='a-price-symbol').get_text()
-    price = int(soup.find('span', class_='a-price-whole').get_text().strip(',').replace('\u202f', ''))
+    price = soup.find('div', class_='a-row a-size-base a-color-base')
+    price = price.find('span', class_='a-offscreen')
 
-    return [symbol, price]
+    return [price]

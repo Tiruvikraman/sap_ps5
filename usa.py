@@ -61,11 +61,6 @@ def get_usa_price(product_name):
     driver.get(url)
     html = driver.page_source
 
-    symbol = soup.find('span', class_='a-price-symbol').get_text()
-    price_text = soup.find('span', class_='a-price-whole').get_text().strip(',').replace('\u202f', '')
-
-    price_text = price_text.replace(',', '').replace('.', '')
-
-    price = int(price_text)
-
-    return [symbol, price]
+    price = soup.find('div', class_='a-row a-size-base a-color-base')
+    price = price.find('span', class_='a-offscreen')
+    return [price]

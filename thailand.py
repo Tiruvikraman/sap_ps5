@@ -9,5 +9,5 @@ driver = webdriver.Chrome()
 driver.get('https://www.powerbuy.co.th/en/search/iphone%2015')
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser')
-price = soup.find('div',class_='text-redPrice font-bold text-sm leading-3 w-full flex')
-print('price',price.get_text())
+price = soup.find('div',class_='text-redPrice font-bold text-sm leading-3 w-full flex').get_text()
+return [price]

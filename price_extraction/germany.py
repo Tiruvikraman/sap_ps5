@@ -6,7 +6,10 @@ from bs4 import BeautifulSoup
 
 
 def get_germany_price(product_name):
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    driver = webdriver.Chrome(options=options)
+    
     product_name = product_name.replace(' ', '+')
     url = f'https://amazon.de/s?k={product_name}'
 
@@ -38,7 +41,6 @@ def get_germany_price(product_name):
     soup = BeautifulSoup(html_after_apply, 'html.parser')
 
     updated_url = driver.current_url
-    print(updated_url)
     url = updated_url
 
     driver.get(url)

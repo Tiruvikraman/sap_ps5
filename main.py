@@ -5,6 +5,7 @@ from singapore import get_singapore_price
 from uk import get_uk_price
 from aust import get_aust_price
 from usa import get_usa_price
+from canada import get_canada_price
 
 product_name = "iphone 15 pro"
 
@@ -27,4 +28,7 @@ price_info = get_aust_price(product_name)
 print(price_info)
 
 price_info = get_usa_price(product_name)
+print(price_info)
+
+price_info = get_canada_price(product_name)
 print(price_info)

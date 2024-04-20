@@ -58,7 +58,11 @@ def get_aust_price(product_name):
     html = driver.page_source
 
     soup = BeautifulSoup(html, 'html.parser')
-    symbol = soup.find('span', class_='a-price-symbol')
-    price = soup.find('span', class_='a-price-whole')
+    symbol = soup.find('span', class_='a-price-symbol').get_text()
+    price_text = soup.find('span', class_='a-price-whole').get_text().strip(',').replace('\u202f', '')
+
+    price_text = price_text.replace(',', '').replace('.', '')
+
+    price = int(price_text)
 
     return [symbol, price]

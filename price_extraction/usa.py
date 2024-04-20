@@ -5,7 +5,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 
 def get_usa_price(product_name):
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    driver = webdriver.Chrome(options=options)
+    
     product_name = product_name.replace(' ', '+')
     url = f'https://www.amazon.com/s?k={product_name}'
     driver.get(url)
@@ -19,7 +22,6 @@ def get_usa_price(product_name):
     while div_g:
         driver.refresh()
         updated_url = driver.current_url
-        print(updated_url)
         url = updated_url
 
         driver.get(url)
@@ -55,7 +57,6 @@ def get_usa_price(product_name):
     soup = BeautifulSoup(html_after_apply, 'html.parser')
 
     updated_url = driver.current_url
-    print(updated_url)
     url = updated_url
 
     driver.get(url)

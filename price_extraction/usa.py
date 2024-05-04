@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 def get_usa_price(product_name):
     options = webdriver.ChromeOptions()
     options.add_argument("--disable-images")
+    options.add_argument('headless')
+
     chrome_options = webdriver.ChromeOptions()
     # this will disable image loading
     chrome_options.add_argument('--blink-settings=imagesEnabled=false')
@@ -71,6 +73,6 @@ def get_usa_price(product_name):
     driver.get(url)
     html = driver.page_source
 
-    price = soup.find('div', class_='a-row a-size-base a-color-base')
+    price = soup.find('span', class_='a-price')
     price = price.find('span', class_='a-offscreen')
-    return price.get_text()
+    return price

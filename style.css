@@ -1,87 +1,68 @@
-.navbar-custom {
-  background-color: rgb(18, 18, 18);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
 }
 
-body{
-  background-image: url(img2.jpg);
-  width: 100%;
+.carousel, .carousel-inner, .carousel-item {
+  height: 100%;
 }
 
-.container{
-  height: 5vh;
-  display: grid;
-  place-items: center;
+.carousel-item img {
+  object-fit: cover;
+  height: 100vh;
 }
 
-.typing-text{
-  white-space: nowrap;
-  overflow: hidden;    
-  font-family: 'serif';  
-  font-size: 38px;
+/* Content container */
+.content-container {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-weight: bold;
   color: white;
-  animation: animated-text 1.5s steps(30,end);
+  z-index: 2;
 }
 
-.product-container {
-background-color: rgba(0, 0, 0, 0.5);
-padding: 10px 15px;
-border-radius: 8px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-width: 300px;
-text-align: center;
-margin: auto;
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: left;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
 }
 
-.product-container h2 {
-margin-bottom: 20px;
-color: white;
+/* Typing text animation */
+.typing-text {
+  font-size: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid black;
+  color: black;
+  width: 0;
+  animation: typing 4s steps(40, end) 1s 1 normal both, blink-caret .5s step-end infinite;
 }
 
-.input-group {
-margin-bottom: 15px;
-text-align: left;
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
 }
 
-.input-group label {
-display: block;
-margin-bottom: 5px;
-color: #555;
-}
-
-.input-group input {
-width: 100%;
-padding: 8px 10px;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box;
-}
-
-button {
-width: 100%;
-padding: 10px 15px;
-border: none;
-border-radius: 4px;
-background-color: wheat;
-color: #fff;
-font-size: 16px;
-cursor: pointer;
-}
-
-button:hover {
-background-color: orange;
-}
-
-@keyframes animated-text{
-  from{width: 0px;}
-  to{width: 472px;}
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
 }
 
 .fade-in-text{
   font-family: serif;
   font-size: 25px;
   text-align: center;
-  color: white;
+  color: black;
   animation: fadeIn 5s;
   -webkit-animation: fadeIn 5s;
   -moz-animation: fadeIn 5s;
@@ -105,38 +86,22 @@ background-color: orange;
 }
 
 
-.product-container {
-  text-align: center;
+/* Form input group */
+.input-group {
+  margin-top: 20px;
+  width: 80%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.input-box {
-  background-color: wheat;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 250px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
+/* Navbar customization */
+.navbar {
+  z-index: 1;
+  position: fixed;
+  width: 100%;
 }
 
-.submit-button {
-  background-color: wheat;
-  border: 1px solid #ccc;
-  padding: 1px 2px;
-  border-radius: 15px;
-  cursor: pointer;
-  width: 150px;
-}
-
-.submit-button:hover {
-  background-color: orange;
-}
-
-
-.card{
-  width: 18rem;
-  height: 20rem;
-  position: relative;
-  margin-left: 25%;
-  margin-top: 5%;
+.carousel-item {
+  transition: transform 2s ease, opacity 2s ease;
 }

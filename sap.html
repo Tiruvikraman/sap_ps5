@@ -3,23 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Conversion</title>
-    <!-- Bootstrap CSS -->
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <title>Background Image Slider with Typing Text</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="edit_style.css">
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
             <img src="logo.png" width="40" height="40" class="d-inline-block align-top" alt="Logo">
-            
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,41 +26,71 @@
                     <a class="nav-link" href="#">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Help</a>
+                    <a class="nav-link" href="#">Contact Us</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="typing-text">Discover the Best Deals Worldwide</div>
-    </div>
-
-    <div class="fade-in-text">
-        <p>We at SAP, aim to provide you
-            with the best deals available on your favourite products, WORLDWIDE!
-        </p>
-    </div>
-
-      <div class="product-container">
-        <h2>Product Specifications</h2>
-        <form action="#" method="post" id="myForm">
-            <div class="input-group">
-                <input type="text" placeholder="product category" name="product category" required>
-                <button id="submit" formaction="#">Submit</button>
+    <!-- Image Slider -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img3.jpg" class="d-block w-100" alt="Slide 1">
             </div>
-        </form>
-    </div>
-
-    <div id="card" class="card">
-        <img src="img2.jpg" class="card-img-top">
-        <div class="card-body">
-            <p class="card-text">Results go here</p>
+            <div class="carousel-item">
+                <img src="img4.jpg" class="d-block w-100" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="bg_img.jpg" class="d-block w-100" alt="Slide 3">
+            </div>
         </div>
     </div>
 
-    
+    <!-- Typing Text Animation and Content -->
+    <div class="content-container">
+        <div class="typing-text">Discover the Best Deals Worldwide</div>
+        
+        <div class="fade-in-text">
+            <p>We at SAP, aim to provide you
+            with the best deals available on your favourite products, WORLDWIDE!
+        </p>
+        </div>
+    </div>
+        
+        <!-- Form -->
+    <form action="#" method="post" id="myForm">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Enter product category" name="productCategory" required>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
 
+    <div class="footer">
+        <h1>About Us</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Expedita porro laudantium dolore.
+            Odio debitis tempore dolorum explicabo, 
+            ratione harum vero maiores labore amet accusantium autem illum alias minima atque esse?
+        </p>
 
+    </div>
+
+    <div class="footer">
+        <h2>Home</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Expedita porro laudantium dolore.
+            Odio debitis tempore dolorum explicabo, 
+            ratione harum vero maiores labore amet accusantium autem illum alias minima atque esse?
+        </p>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
